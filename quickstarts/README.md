@@ -1,54 +1,99 @@
 # Gemini API Tutorials
 
-This folder contains guides about all the Gemini API features so that you can get to know how to use them with complete end to end code.
+This folder contains guides to help you explore all Gemini API features using complete end-to-end code examples.
 
-When you'll be confident in your Gemini capabilities, the [examples](https://github.com/google-gemini/cookbook/tree/main/examples/) folder will be an endless source of inspiration on how to mix those capabilities together.
+When you're confident in your Gemini capabilities, the [examples](https://github.com/google-gemini/cookbook/tree/main/examples/) folder will be an endless source of inspiration on how to mix those capabilities together.
 <br><br>
+
+---
+> **Gemini 4 Argon**: Build with our frontier reasoning model featuring long decode continuation up to 1M output tokens (in a unified 1M input-output context window) and tunable thinking levels (`low`, `medium`, `high`). Get started with the [Get Started](./Get_started.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started.ipynb#gemini4) and [Thinking](./Get_started_thinking.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_thinking.ipynb#gemini4) guides, including the [migration guide](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started.ipynb#gemini4migration).
+>
+> **Gemini 3.8 Flash**: Our most intelligent Flash model, engineered for long-horizon software engineering, autonomous agents, and complex enterprise workflows. Get started with the [Get Started](./Get_started.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started.ipynb#gemini3) and the [thinking](./Get_started_thinking.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_thinking.ipynb#gemini3) guides.
+>
+> **🎙️ Gemini 3.8 TTS & Custom Voices**: Generate expressive speech with [Gemini 3.8 TTS](./Get_started_TTS.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_TTS.ipynb) and design or replicate custom voices with the new [Voices guide](./Get_Started_Voices.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_Started_Voices.ipynb)!
+> 
+> **Omni Flash**: The Nano Banana of video editing is here! Learn how to call the model using the interactions API, edit videos with natural language and more [here](./Get_started_Omni.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Omni.ipynb)!
+> 
+> **🍌 Nano-Banana 2 Lite**: Go bananas with our latest and fastest image generation model: **Nano-Banana 2 Lite**. Get started [here](./Get_Started_Nano_Banana.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_Started_Nano_Banana.ipynb#nano-banana-pro) with a ton of examples!
+> 
+> **Agents API**: Create and run your custom agents using the new [Antigravity agent](./Get_started_managed_agents.ipynb) [![Colab](https://storage.googleapis.com/generativeai-downloads/images/colab_icon16.png)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_managed_agents.ipynb)!
+---
 
 ## Table of contents
 
-If you are new to Gemini API, you should start with those two guides:
-* [Authentication](./Authentication.ipynb): Start here to learn how you can set up your API key so you can get access to the Gemini API.
-* [Get Started](./Get_started.ipynb): Learn how to make your first calls to the Gemini API and get a quick overview of everything it can do.
-<br><br>
+If you're new to Gemini API, you should start with these two guides:
 
+| Quickstart | Description | Open |
+| -------- | ----------- | ---- |
+| [Authentication](./Authentication.ipynb) | Start here to learn how you can set up your API key so you can get access to the Gemini API. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Authentication.ipynb) |
+| [Authentication with OAuth](./Authentication_with_OAuth.ipynb) | Learn how to authenticate with the Gemini API using OAuth 2.0. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Authentication_with_OAuth.ipynb) |
+| [Get Started](./Get_started.ipynb) | Learn how to make your first calls to the Gemini API and get a quick overview of everything it can do. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started.ipynb) |
+<br>
 
 Then learn about how to **Get Started** with the other models that you can use with the API:
-* [Imagen](./Get_started_imagen.ipynb): Get started with our image generation model. ([REST version](./Get_started_imagen_rest.ipynb))
-* [Thinking model](./Get_started_thinking.ipynb): The thinking models are, as their names implies, capable of deeper chains of thoughts than the classical models, this guide will show you how to use those thinking capabilities to solve complex problems. 
-* More to come very soon...
-<br><br>
 
+| Quickstart | Description | Open |
+| -------- | ----------- | ---- |
+| [Managed agents](./Get_started_managed_agents.ipynb) | Create and run agents on isolated VM from the Gemini API | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_managed_agents.ipynb) |
+| [Lyria 3.5](./Get_started_Lyria.ipynb) | Convert your ideas into songs with full control over the music structure and more! | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Lyria.ipynb) |
+| [Nano-Banana 2 & Pro](./Get_Started_Nano_Banana.ipynb) aka. Gemini Image | Get to know how the Gemini model can directly output images and edit them through multi-turn discussion. Now featuring Gemini 3.8 Flash! | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_Started_Nano_Banana.ipynb) |
+| [Omni Flash](./Get_started_Omni.ipynb) | Get started with high-speed video generation and conversational editing using Gemini Omni Flash and the Interactions API. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Omni.ipynb) |
+| [Veo](./Get_started_Veo.ipynb) | Get started with video generation using the Veo models. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Veo.ipynb) |
+| [Veo (REST)](./Get_started_Veo_REST.ipynb) | Get started with video generation using the Veo models (REST version). | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Veo_REST.ipynb) |
+| [Deep Research](./Get_started_Deep_Research.ipynb) | Get started with the Deep Research specialized agent for exhaustive multi-step research. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Deep_Research.ipynb) |
+| [Thinking models](./Get_started_thinking.ipynb) | The thinking models are, as their names imply, capable of deeper chains of thoughts than the classical models, this guide will show you how to use those thinking capabilities to solve complex problems. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_thinking.ipynb) |
+| [Thinking models (REST)](./Get_started_thinking_REST.ipynb) | Get started with thinking capabilities using the REST API. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_thinking_REST.ipynb) |
+| [Lyria RealTime](./Get_started_LyriaRealTime.ipynb) | The Lyria RealTime model let's your generate music and prompt the model in real-time to have it mis it for you live. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_LyriaRealTime.ipynb) |
+| [Text-to-speech](./Get_started_TTS.ipynb) | The Gemini 3.8 TTS models let you generate speech with expressive styles, inline vocal tags, and multiple speakers! | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_TTS.ipynb) |
+| [Voices (Voice Design & Replication)](./Get_Started_Voices.ipynb) | Create custom voice personas from natural language prompts (Voice Design) or clone voices from audio samples (Voice Replication) with Gemini 3.8 TTS. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_Started_Voices.ipynb) |
+| [Gemini Transcribe](./Get_started_transcribe.ipynb) | Transcribe audio files and real-time streams with word-level timestamps, speaker diarization, custom vocabulary, and smart transcription (disfluency removal). | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_transcribe.ipynb) |
+<br>
 
-There are multiple ways to call the models using the Gemini API, these other **Get Started** guides will then show you the other ways to call the model:
-* [Get started with Live API](./Get_started_LiveAPI.ipynb): Get started with the live API with this comprehensive overview of its capabilities
-* More to come...
-<br><br>
+There're multiple ways to call the models using the Gemini API, these other **Get Started** guides will then show you the other ways to call the model:
 
+| Quickstart | Description | Open |
+| -------- | ----------- | ---- |
+| [generateContent](./Get_started_Generate_Content.ipynb) | Get started with `generateContent`, the core method for sending prompts to the models. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Generate_Content.ipynb) |
+| [Interactions API](./Get_started_interactions_api.ipynb) | Overview of the unified Interactions API for building with Gemini models and agents. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_interactions_api.ipynb) |
+| [Get started with Live API](./Get_started_LiveAPI.ipynb) | Get started with the live API with this comprehensive overview of its capabilities | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveAPI.ipynb) |
+| [Get started with Live Extended Thinking](./Get_started_Live_Thinking.ipynb) | Use extended thinking in real-time Live API sessions with conversational filler cues and non-blocking background tools | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_Live_Thinking.ipynb) |
+| [Get started with Live Translation](./Get_started_LiveTranslate.ipynb) | Translate audio streams in real-time using the Live Translation API | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveTranslate.ipynb) |
+| [OpenAI compatibility](./Get_started_OpenAI_Compatibility.ipynb) | Did you know that you could use Gemini using the OpenAI SDK? | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_OpenAI_Compatibility.ipynb) |
+<br>
 
 Finally, these guides will deep-dive into specific capabilities of the Gemini models and API:
-* [Grounding](./Search_Grounding.ipynb): Learn how to use Google Search to ground your answers with external sources.
-* [Image-out](./Image_out.ipynb): Get to know how the Gemini model can directly output images and edit them through multi-turn discussion.
-* [Spatial understanding](./Spatial_understanding.ipynb): Learn how to use Gemini's spatial understanding capabilities to detect what's in your images, and reason about them
-* [Video understanding](./Video_understanding.ipynb): Learn how to use Gemini's video understanding capabilities to analyze what's in your videos
-* [Get started with Live API tools](./Get_started_LiveAPI_tools.ipynb): Now you know everything about the Live API, go to the next level and learn how to use tools with it!
-<br><br>
 
+| Quickstart | Description | Open |
+| -------- | ----------- | ---- |
+| [Grounding](./Grounding.ipynb) | Learn how to use diffrent ways (Google Search, Google Maps, Youtube, url context) to ground your answers with external sources. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Grounding.ipynb) |
+| [File Search](./File_Search.ipynb) | Upload and search your data using the hosted RAG capability of the File Search tool. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/File_Search.ipynb) | 
+| [Search Grounding](./Search_Grounding.ipynb) | Deep-dive into the Google search grounding capabilities. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Search_Grounding.ipynb) |
+| [Gemini Robotics-ER 1.5 Preview](./gemini-robotics-er.ipynb) | Learn how to use the Gemini Robotics Embodied Reasoning model for spatial understanding and reasoning| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/gemini-robotics-er.ipynb) |
+| [Batch-mode](./Batch_mode.ipynb) | Use Batch-mode to send large volume of non-time-sensitive requests to the model and get a 50% discount. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Batch_mode.ipynb) |
+| [Inference tiers](./Inference_tiers.ipynb) | Learn how to use the different inference tiers to help you balance speed, cost, and reliability. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Inference_tiers.ipynb) |
+| [Webhooks](./Webhooks.ipynb) | Configure webhooks to receive real-time notifications when asynchronous operations like batch jobs and video generation complete. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Webhooks.ipynb) |
+| [Function Calling](./Function_calling.ipynb) | Discover how to have Gemini call you own function and enhaced its capabilites. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Function_calling.ipynb) |
+| [Spatial understanding](./Spatial_understanding.ipynb) | Learn how to use Gemini's spatial understanding capabilities to detect what's in your images, and reason about them | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Spatial_understanding.ipynb) |
+| [Video understanding](./Video_understanding.ipynb) | Learn how to use Gemini's video understanding capabilities to analyze what's in your videos | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Video_understanding.ipynb) |
+| [Get started with Live API tools](./Get_started_LiveAPI_tools.ipynb) | Now you know everything about the Live API, go to the next level and learn how to use tools with it! | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Get_started_LiveAPI_tools.ipynb) |
+<br>
 
----
-Those guides are using the legacy SDK and haven't been updated yet, still they are worth checking as even if the SDK is not the same, the underlying logic of the feature stays the same. They will be converted to the SDK soon:
-* [Asynchronous requests](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Asynchronous_requests.ipynb): Learn how to use Python's async/await API with the Gemini SDK to parallelize calls.
-* [Counting Tokens](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Counting_Tokens.ipynb) Tokens are the basic inputs to the Gemini models. Through this notebook, you will gain a better understanding of tokens through an interactive experience.
-* [Gemini Flash Introduction](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Gemini_Flash_Introduction.ipynb): Get started with Gemini Flash 1.5.
-* [Models](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Models.ipynb): Learn about the different models and parameters available in the Gemini API.
-* [Working with files](https://github.com/google-gemini/cookbook/blob/main/quickstarts/File_API.ipynb): Use the Gemini API to upload files (audio, video, images, code, text) and perform actions with them through the Gemini models.
-* [Audio](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Audio.ipynb): Learn how to use the Gemini API with audio files.
-* [JSON mode](https://github.com/google-gemini/cookbook/blob/main/quickstarts/JSON_mode.ipynb): Discover how to use JSON mode.
-* [Function Calling](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Function_calling.ipynb): The Gemini API works great with code. Use this quickstart to learn how to write prompts to understand and call functions. Then check out the [function calling config](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Function_calling_config.ipynb) tutorial to learn more.
-* [PDF files](https://github.com/google-gemini/cookbook/blob/main/quickstarts/PDF_Files.ipynb). Learn how to work with PDF files, to and upload text and images.
-* [System Instructions](https://github.com/google-gemini/cookbook/blob/main/quickstarts/System_instructions.ipynb): Give models additional context on how to respond by setting system instructions.
-* [Safety](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Safety.ipynb): Configure safety settings in the Gemini API.
-* [Streaming](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Streaming.ipynb): Learn how to use streaming for single interactions, and for chat.
-* [Embeddings](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Embeddings.ipynb): Create high quality and task-specific embeddings.
-* [Tuning](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Tuning.ipynb): Learn how to improve model performance on a specific task through tuning.
-* [Video](https://github.com/google-gemini/cookbook/blob/main/quickstarts/Video.ipynb): Upload a video to the Gemini API and use it in your prompt.
+These guides will walk you through the various use cases of the Gemini API:
+
+| Quickstart | Description | Open |
+| -------- | ----------- | ---- |
+| [Asynchronous requests](./Asynchronous_requests.ipynb) | Learn how to use Python's async/await API with the Gemini SDK to parallelize calls. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Asynchronous_requests.ipynb) |
+| [Counting Tokens](./Counting_Tokens.ipynb) | Tokens are the basic inputs to the Gemini models. Learn how to count tokens in your text and multimodal prompts. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Counting_Tokens.ipynb) |
+| [Models](./Models.ipynb) | Learn about the different models and parameters available in the Gemini API. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Models.ipynb) |
+| [Working with files](./File_API.ipynb) | Use the Gemini API to upload files (audio, video, images, code, text) and perform actions with them through the Gemini models. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/File_API.ipynb) |
+| [Audio](./Audio.ipynb) | Learn how to use the Gemini API with audio files. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Audio.ipynb) |
+| [JSON mode](./JSON_mode.ipynb) | Discover how to use JSON mode. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/JSON_mode.ipynb) |
+| [Enum](./Enum.ipynb) | Constrain model outputs using Enums. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Enum.ipynb) |
+| [PDF files](./PDF_Files.ipynb) | Learn how to work with PDF files, and upload text and images. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/PDF_Files.ipynb) |
+| [System Instructions](./System_instructions.ipynb) | Give models additional context on how to respond by setting system instructions. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/System_instructions.ipynb) |
+| [Streaming](./Streaming.ipynb) | Learn how to use streaming for single interactions, and for chat. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Streaming.ipynb) |
+| [Embeddings](./Embeddings.ipynb) | Create high-quality and task-specific embeddings. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Embeddings.ipynb) |
+| [Caching](./Caching.ipynb) | Learn how to use context caching to reduce costs and latency on repetitive tasks. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Caching.ipynb) |
+| [Error handling](./Error_handling.ipynb) | Learn best practices for error handling and retry logic with the Gemini API. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Error_handling.ipynb) |
+| [Prompting](./Prompting.ipynb) | Master prompting techniques including few-shot, system instructions, and multimodal prompts. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Prompting.ipynb) |
+| [Safety](./Safety.ipynb) | Learn how to configure safety thresholds and content moderation filters. | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-gemini/cookbook/blob/main/quickstarts/Safety.ipynb) |

@@ -1,0 +1,267 @@
+# Gemini Cookbook Python notebooks Style Guide
+
+# Introduction
+This style guide outlines the coding conventions for Python notebooks developed by the Gemini team.
+It's based on PEP 8, but with some modifications to address specific needs and
+preferences within our organization.
+
+This guide is mostly about the python content and the notebook, but don't forget to also review the markdown files. In particular, any new notebook should be referenced in the corresponding readmes (at folder level at least, and potentially the one on higher levels).
+
+# Key Principles
+* **Readability:** Code should be easy to understand for all developers. Since they are notebooks and aimed at teaching
+  how to use Gemini and its API/SDK, the focus should be on writing didactic and easy-to-read code while limiting the
+  back and forth with the documentation or within the notebook.
+* **Maintainability:** Code should be easy to modify and extend. In particular it must be easy to switch the models used.
+* **Consistency:** Adhering to a consistent style across all projects improves
+  collaboration and reduces errors. Similar codes (like getting the api key from the secret, initializing the client or
+  selecting a model) should always be the same so it's easier for the reader to go directly to the specific content.
+* **Performance:** While readability is paramount, code should be efficient.
+
+# Cookbook notebook specific instructions
+
+## Common mistakes
+
+* There are multiple SDKs to use the Gemini APIs. The correct and most recent one is the [Python genai](https://github.com/googleapis/python-genai) one.
+    * `%pip install -U -q 'google-genai>=2.9.0'` is the right way to install the SDK. The version indicated should reflect the minimum version needed to use the features used in the notebook (2.9.0 by default or in doubt).
+    * `from google import genai` is the right way to import the official SDK.
+    * `from google.genai import types` is the right way to import the types.
+    * `import google.generativeai` is incorrect, this is the old one that was deprecated early 2025.
+
+## Repository scope and redirects
+
+* **Prohibited use policy:** If a PR appears to involve a restricted use case under [Google's Generative AI Prohibited Use Policy](https://policies.google.com/terms/generative-ai/use-policy), call out the concern in the review and do not approve the PR until it is resolved. Restricted uses include NFTs, crytocurrencies, automated credit or loan eligibility decisions, biometric background profiling, and unauthorized surveillance.
+* **Gemma models:** If a PR is specifically about Gemma open models, such as Gemma fine-tuning or Logit Lens, direct the author to [google-gemma/cookbook](https://github.com/google-gemma/cookbook).
+* **Gemini Enterprise Agent Platform (fka. Vertex AI) workflows and administration:** Redirect notebooks specifically focused on enterprise Vertex AI or Gemini Enterprise Agent Platform infrastructure, pipelines, or Google Cloud administration to [GoogleCloudPlatform/generative-ai](https://github.com/GoogleCloudPlatform/generative-ai). Direct SDK bugs to their dedicated repos (ex: [googleapis/python-genai](https://github.com/googleapis/python-genai)).
+* **Google AI Studio:** Direct questions or PRs about Google AI Studio, including API key generation or project settings, to the [Google AI Developer Forum](https://discuss.ai.google.dev/c/gemini-api/4) or official [Google AI Studio documentation](https://aistudio.google.com/docs/ai-studio-quickstart).
+* **Promotional content:** Call out in the review PRs that primarily promote a paid or proprietary third-party service. Third-party integrations must provide clear technical learning value.
+
+## Dependencies and third-party frameworks
+
+* **Avoid unnecessary orchestration frameworks:** Do not introduce third-party wrapper or orchestration frameworks, such as `langchain`, `llamaindex`, `crewai`, or `litellm`, when `google-genai` supports the demonstrated capability. In that case, it must be clearly explain what the value added of the framework is compared to the official Gemini API/SDK.
+* **Integration exceptions:** Third-party frameworks are permitted when the notebook's explicit purpose is to demonstrate that integration. Place the notebook in the relevant existing integration directory.
+* Keep `%pip install` requirements minimal to ensure fast Colab startup times and avoid dependency conflicts.
+
+## Interactions API
+
+All new quickstart notebooks **must** use the Interactions API (`client.interactions.create()`) instead of the legacy `client.models.generate_content()`. The Interactions API is the primary interface starting with `google-genai>=2.9.0`.
+
+### When to use `client.interactions.create()`
+* All standard text generation, multimodal understanding, structured output, function calling, grounding, code execution, thinking, and streaming use cases.
+* This is the default — use it unless your notebook falls into one of the exceptions below.
+
+### When it's OK to NOT use the Interactions API
+The following features are **not yet supported** by the Interactions API and should continue using their dedicated APIs:
+* **Veo (video generation):** Use `client.models.generate_videos()`
+* **Imagen (image generation):** Use `client.models.generate_images()`
+* **Live API (real-time streaming):** Use `client.live.connect()`
+* **Embeddings:** Use `client.models.embed_content()`
+* **TTS (text-to-speech):** Use the TTS-specific API
+* **Batch mode:** Use `client.batches`
+* **Caching:** Use `client.caches`
+* **File API:** Use `client.files`
+
+When a notebook uses one of these exceptions, add a brief comment explaining why the Interactions API is not used.
+
+### Response access pattern
+With the Interactions API, **always use the convenience properties** to access outputs:
+* `interaction.output_text` for text responses
+* `interaction.output_image` for generated images
+* `interaction.output_audio` for audio responses
+
+Example:
+```python
+interaction = client.interactions.create(
+    model=MODEL_ID,
+    input="Your prompt here",
+)
+display(Markdown(interaction.output_text))
+```
+
+> **Note on `steps` access:** Do not access steps directly (e.g. `interaction.steps[-1].content[0].text`) in standard notebooks. The only exception is in introductory "Get Started" tutorials (such as `quickstarts/Get_started.ipynb`), where the underlying anatomy of `steps` and `content` items is explicitly explained to learners before introducing the convenience properties.
+
+Do **not** use `interaction.outputs` — it is deprecated in 2.0.0.
+
+
+## Hard-coded API keys
+
+Very important: notebooks must not contain hard-coded API keys. If you find one, immediately tell the author to cancel their submission, revoke the compromised key, and create a new one. Exposed keys are quickly collected and can lead to unauthorized usage and costs for the author.
+
+## Notebook specificities
+
+Most of the cookbook content is Colab notebooks, which are stored as Json.
+* Only the `source` of the `cells` should be analyzed/reviewed.
+* Those cells can be either Markdown or python code (or sometimes bash in which case the code cell starts with `%%bash`).
+* The `outputs` do not have to be ignored, but if none of them changed while some code has, it might be a sign that the
+  notebook has not been run to check that it works, in which case a warning should be raised;
+* Ideally we want the outputs to be saved in the notebooks so that one can see what the code does without runnning it. The only exception is when the output is too large (it contains images or videos for ex.).
+* If the `execution_count` has changed to something else than `null`, it usually indicates that the formatting script has not
+  been run. A warning should be raised, but only once per notebook. Be very clear that it means that the formatting script must be run, not that the outputs should be removed.
+
+## Notebook style
+
+* Include the collapsed license at the top (uses the Colab "Form" mode to hide the cells).
+* Use one `H1` header (`#` in Markdown) for the title.
+* Include the "open in colab" button immediately after the `H1`. It should look like
+  `<a target=\"_blank\" href=\"URL\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" height=30/>`
+  where `URL` should be `https://colab.research.google.com/github/google-gemini/cookbook/blob/main/` followed by the notebook
+  location in the cookbook
+* Include an overview section before any code.
+* use `%pip` instead of `!pip`
+* Put the imports when they are first used. Try to avoid having a big "import" cell at the beginning.
+* Keep code as brief as possible. 
+* Break text cells at headings
+* Break code cells between "building" and "running".
+* Necessary but uninteresting code (like helper functions) should be hidden in a toggleable code cell by putting `# @title`
+  as the first line.
+
+## Code style
+
+* Notebooks are for people. Write code optimized for clarity.
+* Use the [Google Python Style Guide](http://google.github.io/styleguide/pyguide.html), where applicable. Code formatted
+  by [`pyink`](https://github.com/google/pyink) will always be accepted.
+* Ideally, if you define a function, run it and show us what it does before using it in another function.
+* Demonstrate small parts before combining them into something more complex.
+* Only use helper function when you don't have a choice. If it's only a couple of lines, it's usually better to write them
+  everytime so that the readers don't have to check the function definition all the time.
+* When selecting a model, use a colab selector for easier maintainability:
+  `MODEL_ID = "gemini-3.8-flash"  # @param ["gemini-4-argon", "gemini-3.1-pro-preview", "gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-2.5-pro"] {"allow-input": true, "isTemplate": true}`
+  * Always use double quotes `"` for string values and list items.
+  * Always format the configuration dictionary as valid JSON (with double-quoted keys like `{"allow-input": true, "isTemplate": true}`).
+  * Variable naming: `MODEL_ID` is standard for new notebooks. For existing notebooks that already use `MODEL` or `model_name` across downstream cells, keeping the existing variable name is fully compliant and encouraged to prevent broken references.
+* Some notebooks can also benefit from having a form to update the prompt:
+  `prompt = "Detect the 2d bounding boxes of the cupcakes (with “label” as topping description”)"  # @param {type:"string"}`
+  or a list of prompts they can choose from:
+ `prompt = "Draw a square around the fox' shadow"  # @param ["Find the two origami animals.", "Where are the origamis' shadows?","Draw a square around the fox' shadow"] {"allow-input":true}`
+* The API key should always be gathered from the `GEMINI_API_KEY` colab secret. If the code is using the legacy `GOOGLE_API_KEY` secret, ask them to update it.
+
+## Outputs
+
+* Whenever possible simply use `print`.
+* When needed use `display(Markdown())` for markdown text, `print(json.dumps(json_string, indent=4))` for Json
+  or `display(Image()` for images.
+
+## Text
+
+* Use an imperative style. "Run a prompt using the API."
+* Use sentence case in titles/headings.
+* Use short titles/headings: "Download the data", "Call the API", "Process the results".
+* Use the [Google developer documentation style guide](https://developers.google.com/style/highlights).
+* Use [second person](https://developers.google.com/style/person): "you" rather than "we". You will fail the lint check otherwise.
+* Explain what you do, the features you use, and link to existing notebooks or to the documentation for more details.
+
+## Examples
+
+* Keep examples quick and concise.
+* Do not use extra parameters (like temperature) when not needed to keep the focus on what your notebook is illustrating.
+* If you have to use extra-parameters, explain why and why the specific value the first time you do.
+* **Strictly Forbidden (Blocking Review Error)**: Any examples using `yt-dlp`, `yt_dlp`, `pytube`, `pytubefix`, `youtube-dl`, `youtube_dl`, or equivalent tools that download, rip, or stream YouTube content are strictly forbidden as they violate the [YouTube Terms of Service](https://www.youtube.com/t/terms#c3e2907ca8). Always reject any PR introducing them and instruct the author to pass YouTube URLs natively to the Gemini API via `file_uri` (e.g., `types.Part.from_uri(file_uri="https://www.youtube.com/watch?v=...", mime_type="video/mp4")`).
+* Any crypto or blockchain related topics are also forbidden
+
+## Assets and external data
+
+* All media files (audio, images, video), datasets, and other external assets used in notebooks must be **openly licensed** (CC0, CC-BY, Apache 2.0, public domain, or equivalent). Assets with unclear or restrictive licensing must not be used.
+* Always **mention the source and license** in the markdown cell that introduces the asset. For example: "The example below uses a [CC0-licensed](https://creativecommons.org/publicdomain/zero/1.0/) sample from [SoundHelix](https://www.soundhelix.com)."
+* Prefer hosting assets on the cookbook's GCS bucket (`gs://generativeai-downloads/`) for long-term URL stability. If that is not possible, use reliable sources (Wikimedia Commons, Internet Archive, YouTube) over ephemeral URLs.
+* YouTube videos can be used directly via `types.Part.from_uri()` and do not need to be downloaded.
+
+# Deviations from PEP 8
+
+## Line Length
+
+* **Maximum line length:** 100 characters (instead of PEP 8's 79).
+    * Modern screens allow for wider lines, improving code readability in many cases.
+    * Many common patterns in our codebase, like long strings or URLs, often exceed 79 characters.
+
+## Indentation
+
+* **Use 4 spaces per indentation level.** (PEP 8 recommendation)
+* When a function has multiple parameters, expend it on multiple lines with proper indentation for better readability:
+    ```python
+    interaction = client.interactions.create(
+        model=MODEL_ID,
+        input="Here's my prompt",
+        response_format={
+            "type": "text",
+            "mime_type": "application/json",
+            "schema": Schema.model_json_schema(),
+        },
+    )
+    ```
+Notice the line break on the first and last lines.
+* Long text variables should use triple double quotes and proper indentation for better readability:
+    ```python
+    long_prompt = """
+        Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin.
+        Halvah croissant candy canes bonbon candy. Apple pie jelly beans topping carrot cake danish tart cake cheesecake.
+        Muffin danish chocolate soufflé pastry icing bonbon oat cake. Powder cake jujubes oat cake.
+        Lemon drops tootsie roll marshmallow halvah carrot cake.
+    """    
+    ```
+Notice the line break on the first and last lines.
+* When a multiline string is used inside a function call, add an extra indent level between the `"""` delimiters and the text body to visually separate the string content from the surrounding code:
+    ```python
+    interaction = client.interactions.create(
+        model=MODEL_ID,
+        input=[
+            audio_file,
+            """
+                Analyze this audio file and extract any musical chord
+                information. Return a JSON object with:
+                - "title": the song title if identifiable
+                - "key": the musical key
+                - "chords": a list of chord objects
+            """,
+        ],
+    )
+    ```
+    
+## Naming Conventions
+
+* **Variables:** Use lowercase with underscores (snake_case): `user_name`, `total_count`
+* **Constants:**  Use uppercase with underscores: `MAX_VALUE`, `DATABASE_NAME`
+* **Functions:** Use lowercase with underscores (snake_case): `calculate_total()`, `process_data()`
+* **Classes:** Use CapWords (CamelCase): `UserManager`, `PaymentProcessor`
+* **Modules:** Use lowercase with underscores (snake_case): `user_utils`, `payment_gateway`
+
+## Docstrings
+
+Docstrings are not mandatory, but when used they should follow those conventions:
+* **Use triple double quotes (`"""Docstring goes here."""`) for all docstrings.**
+* **First line:** Concise summary of the object's purpose.
+* **For complex functions/classes:** Include detailed descriptions of parameters, return values,
+  attributes, and exceptions.
+* **Use Google style docstrings:** This helps with automated documentation generation.
+    ```python
+    def my_function(param1, param2):
+        """Single-line summary.
+
+        More detailed description, if necessary.
+
+        Args:
+            param1 (int): The first parameter.
+            param2 (str): The second parameter.
+
+        Returns:
+            bool: The return value. True for success, False otherwise.
+
+        Raises:
+            ValueError: If `param2` is invalid.
+        """
+        # function body here
+    ```
+
+## Type Hints
+
+Type Hints are not mandatory, but when used they should follow those conventions:
+* **Use type hints:**  Type hints improve code readability and help catch errors early.
+* **Follow PEP 484:**  Use the standard type hinting syntax.
+
+## Comments
+
+* **Write clear and concise comments:** Explain the "why" behind the code, not just the "what".
+* **Comment sparingly:** Well-written code should be self-documenting where possible.
+* **Use complete sentences:** Start comments with a capital letter and use proper punctuation.
+* **No leftover commit, changelog, or AI meta-comments:** All code comments and markdown text must be written from a timeless tutorial perspective for the reader—explaining how the code works in its current state, never narrating the git diff, what was removed/changed, or why a style rule was followed. Always flag and ask to remove:
+  * **Diff/commit comments** describing a fix or migration (e.g., `# Remove the outer 'musicGenerationConfig' key...`, `# Updated to use Interactions API`, `# Fixed per review feedback`, `# Changed model to gemini-3.8-flash`).
+  * **AI placeholder or scaffolding comments** (e.g., `# Rest of the code remains the same`, `# Insert your implementation here`).
+  * **Style-guide meta-commentary** in markdown or code where an AI assistant repeats review/style instructions (e.g., *"Use `%pip` with the required minimum SDK version as per the official style guide"*).

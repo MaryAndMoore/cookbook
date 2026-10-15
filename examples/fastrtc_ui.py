@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2025 Google LLC
+# Copyright 2026 Google LLC
 #
 # Written by:
 #   - Freddy Boulton (https://github.com/freddyaboulton)
@@ -113,7 +113,7 @@ class GeminiHandler(AsyncStreamHandler):
             ),
         )
         async with client.aio.live.connect(
-            model="gemini-2.0-flash-exp", config=config
+            model="gemini-3.7-flash", config=config
         ) as session:
             async for audio in session.start_stream(
                 stream=self.stream(), mime_type="audio/pcm"
@@ -153,7 +153,7 @@ with gr.Blocks() as demo:
         api_key = gr.Textbox(
             label="API Key",
             placeholder="Enter your API Key",
-            value=os.getenv("GOOGLE_API_KEY", ""),
+            value=os.getenv("GEMINI_API_KEY") or "",
             type="password",
         )
     with gr.Row(visible=False) as row:
